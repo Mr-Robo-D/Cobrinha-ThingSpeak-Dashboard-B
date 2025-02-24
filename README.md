@@ -1,4 +1,4 @@
-											Jogo da cobrinha
+						Jogo da cobrinha
 Projeto do popular game "snake" rodando e um dispositivo ESP32, no qual se comunica a uma pagina HTML para fazer atualização de pontos e guardando o resultado na plataforma "ThingSpeak" para futuras consultas.
 
 
