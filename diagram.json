@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-ssd1306",
+      "id": "ssd1306",
+      "top": -70.1,
+      "left": -46.1,
+      "attrs": { "i2c-address": "0x3D" }
+    },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 7.94,
+      "left": -15.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn-up",
+      "top": 217.4,
+      "left": 19.2,
+      "attrs": { "color": "black" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn-down",
+      "top": 294.2,
+      "left": 28.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn-left",
+      "top": 255.8,
+      "left": -28.8,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn-right",
+      "top": 255.8,
+      "left": 67.2,
+      "attrs": { "color": "yellow" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ssd1306:CLK", "esp:22", "green", [ "v-19.2", "h192.6", "v259.2", "h-96", "v-19.2" ] ],
+    [ "ssd1306:VIN", "esp:3V3", "red", [ "v-38.4", "h67.8", "v163.05" ] ],
+    [ "ssd1306:GND", "esp:GND.3", "black", [ "v-47.5", "h67.4", "v278.4", "h-67.2" ] ],
+    [ "esp:21", "ssd1306:DATA", "green", [ "v19.2", "h-153.6", "v-240" ] ],
+    [ "btn-right:2.r", "esp:17", "white", [ "h9.8", "v-86.2", "h-182.4" ] ],
+    [ "btn-up:2.r", "esp:19", "yellow", [ "h19.4", "v-38.2", "h-57.6" ] ],
+    [ "btn-down:2.r", "esp:18", "blue", [ "h115.4", "v-124.6", "h-172.8" ] ],
+    [ "btn-left:2.r", "esp:5", "cyan", [ "v77", "h115.4", "v-201.6" ] ],
+    [ "btn-right:1.l", "esp:GND.2", "black", [ "h9.6", "v28.8", "h57.6", "v-134.4" ] ],
+    [ "btn-up:1.l", "esp:GND.2", "black", [ "h0", "v-28.8", "h124.8", "v-38.4" ] ],
+    [ "btn-down:1.l", "esp:GND.2", "black", [ "v67.2", "h144", "v-211.2" ] ],
+    [ "btn-left:1.l", "esp:GND.2", "black", [ "h-9.6", "v-48", "h249.6", "v-48" ] ]
+  ],
+  "dependencies": {}
+}
