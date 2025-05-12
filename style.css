@@ -1,0 +1,180 @@
+:root {
+            --primaria: #150ab7;
+            --primaria-escura: #388E3C;
+            --secundaria: #2196F3;
+            --escura: #333;
+            --clara: #f8f9fa;
+            --cinza: #e0e0e0;
+            --texto: #333;
+            --texto-claro: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--clara);
+            color: var(--texto);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primaria);
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+
+        .subtitle {
+           
+            color: var(--texto-claro);
+            font-size: 1rem;
+        }
+
+        .leaderboard {
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: var(--primaria);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--cinza);
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(76, 175, 80, 0.05);
+        }
+
+        .destaque {
+            font-weight: 600;
+            color: var(--primaria);
+        }
+
+        .record-container {
+            /* Atualizado para corresponder à classe usada no HTML */
+            background-color: var(--primaria);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .record-container i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .record-text {
+            /* Atualizado para corresponder à classe usada no HTML */
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .info-atualizacao {
+            color: var(--texto-claro);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-atualizacao i {
+            margin-right: 8px;
+            animation: girar 2s linear infinite;
+        }
+
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .record-text {
+                font-size: 1rem;
+            }
+        }
