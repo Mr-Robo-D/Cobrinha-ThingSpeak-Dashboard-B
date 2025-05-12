@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         elementoRecorde: document.getElementById('recorde')
     };
 
+  
+    let dadosAnteriores = [];
+
     const formatarDados = (dados) => {
         return dados
             .map(dado => ({
@@ -37,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
     };
 
-  
     const atualizarRecorde = (dados) => {
         if (dados.length > 0 && dados[0].pontuacao > estado.recorde.pontuacao) {
             estado.recorde = { nome: dados[0].nome, pontuacao: dados[0].pontuacao };
@@ -48,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-
     const buscarDados = async () => {
         if (estado.carregando) return;
         estado.carregando = true;
@@ -57,28 +58,34 @@ document.addEventListener('DOMContentLoaded', function() {
             const resposta = await fetch(
                 `https://api.thingspeak.com/channels/${configuracao.idCanal}/feeds.json?api_key=${configuracao.chaveApi}&results=${configuracao.numeroResultados}`
             );
-            
+        
             if (!resposta.ok) throw new Error('Erro na resposta da API');
-            
+        
             const dados = await resposta.json();
             const dadosFormatados = formatarDados(dados.feeds);
         
             if (dadosFormatados.length > 0) {
+                dadosAnteriores = dadosFormatados;
                 renderizarTabela(dadosFormatados);
                 atualizarRecorde(dadosFormatados);
             } else {
                 console.warn('Nenhuma pontuação válida encontrada. Mantendo os resultados anteriores.');
+                if (dadosAnteriores.length > 0) {
+                    renderizarTabela(dadosAnteriores);
+                }
             }
         } catch (erro) {
             console.error('Erro ao buscar dados:', erro);
+          
+            if (dadosAnteriores.length > 0) {
+                renderizarTabela(dadosAnteriores);
+            }
         } finally {
             estado.carregando = false;
         }
     };
 
-  
     buscarDados();
-
 
     const idIntervalo = setInterval(buscarDados, configuracao.intervaloAtualizacao);
 
